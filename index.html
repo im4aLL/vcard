@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en" class="no-js" ng-app="vcard">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" href="css/ionicons.css">
+	<link rel="stylesheet" href="css/onepage-scroll.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+
+	<link rel="stylesheet/less" href="css/main.less">
+
+    <script src="js/modernizr.js"></script>
+    <script src="js/less-1.5.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+    <script src="js/angular.controllers.js"></script>
+	<title>vCard Demo</title>
+</head>
+<body>
+	
+	<header class="fixed">
+		<nav class="top-bar" data-topbar data-options="is_hover: false">
+	        <ul class="title-area">
+	            <li class="name" ng-controller="basic">
+	                <h1><a href="./">{{name}}</a></h1>
+	            </li>
+	            <li class="mobile-menu-trigger show-for-small-only">
+                    <a href="javascript:void(0)" class="push-nav-trigger"><i class="ion-navicon-round"></i></a>
+                </li>
+	        </ul>
+
+	        <div class="top-bar-section">
+	            
+	            <!-- Right Nav Section -->
+	            <ul class="right" ng-controller="social">
+	                <li ng-repeat="network in networks"><a href="{{network.link}}" target="_blank" title="{{network.network}}"><i class="{{network.icon}}"></i></a></li>
+	                <li class="active">
+	                    <a href="javascript:void(0)" class="push-nav-trigger"><i class="ion-navicon-round"></i></a>
+	                </li>
+	            </ul>
+
+	            <!-- Left Nav Section -->
+	            <ul class="left" ng-controller="basic">
+	                <li><a href="javascript:void(0)">{{designation}}</a></li>
+	            </ul>
+
+	        </div>
+	    </nav>
+	</header>
+
+	<div class="push-nav" ng-controller="MenuList">
+		<ul class="side-nav">
+			<li ng-repeat="menu in menus"><a href="javascript:void(0)" data-menu-index="{{menu.index}}" data-id="{{menu.id}}">{{menu.name}}</a></li>
+		</ul>
+	</div>
+
+	<div class="loading text-center"><div class="spinner"></div></div>
+
+	<!--main-->
+	<div class="main">
+		
+		<!--overview-->
+		<section class="overview text-center" id="overview" ng-controller="basic" data-speed="10">
+
+			<div class="row">
+				<div class="small-12 large-12 columns">
+					
+					<div class="profile-picture">
+						<img src="img/pp.jpg" alt="">
+					</div>
+
+					<h1>{{name}}</h1>
+					<h2>{{designation}}</h2>
+					<p>{{summary}}</p>
+
+				</div>
+			</div>
+
+		</section>
+		<!--overview-->
+
+		<!--resume-->
+		<section class="resume" id="resume">
+
+			<div class="row">
+				<div class="small-12 large-12 columns">
+					
+					<h2>Employment</h2>
+
+					<ul class="emp-data" ng-controller="employment">
+						<li ng-repeat="experience in experiences">
+							<h4 class="left">{{experience.title}}</h4>
+							<span class="right">{{experience.range}}</span>
+							<h5><a href="{{experience.companyURL}}" target="_blank">{{experience.company}}</a></h5>
+							<p>{{experience.intro}}</p>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+
+		</section>
+		<!--resume-->
+
+		<!--education-->
+		<section class="education" id="education">
+
+			<div class="row">
+				<div class="small-12 large-12 columns">
+					
+					<h2>Education</h2>
+
+					<ul class="ed-data" ng-controller="education">
+						<li ng-repeat="education in educations">
+							<h4 class="left">{{education.degree}}</h4>
+							<span class="right">{{education.passingYear}}</span>
+							<h5>{{education.institute}}</h5>
+							<p>{{education.result}}</p>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+
+		</section>
+		<!--education-->
+	
+		<!--skill-->
+		<section class="skill" id="skill">
+			<h2 class="text-center">Skill Achievement</h2>
+			<div class="row">
+				<div class="small-12 large-12 columns">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, nam, dolores, rerum, quis distinctio quia error sint a tempore aliquam nostrum quaerat ipsa ut voluptatum impedit porro suscipit eligendi debitis.</p>
+				</div>
+			</div>
+
+			<div class="row text-center" ng-controller="expertin">
+				<div class="large-3 small-6 medium-3 columns" ng-repeat="skill in skills">
+					<span class="chart" data-percent="{{skill.level}}">
+		                <span class="percent">{{skill.level}}%</span>
+		        	</span>
+		        	<h5>{{skill.language}}</h5>
+				</div>
+			</div>
+
+		</section>
+		<!--skill-->
+		
+		<!--portfolio-->
+		<section class="portfolio clearfix" id="portfolio">
+			
+			<div class="row">
+				<div class="small-12 large-12 columns">
+					<h2>Recent works</h2>
+
+					<ul class="controls button-group radius">
+						<li><a href="javascript:void(0)" class="button alert small" data-rel="*">All</a></li>
+						<li><a href="javascript:void(0)" class="button alert small" data-rel="digital">Digital</a></li>
+						<li><a href="javascript:void(0)" class="button alert small" data-rel="print">Print</a></li>
+					</ul>
+
+				</div>
+			</div>
+			
+			<div class="works row">
+				<div class="small-12 large-12 columns">
+				
+					<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-4" ng-controller="portfolio">
+						<li ng-repeat="item in items" class="{{item.category}}">
+						
+							<div class="item">
+								<img ng-src="{{item.imagePath}}" alt="">
+								<div class="description">
+									<h5>{{item.title}}</h5>
+									<p>{{item.info}}</p>
+									<a href="{{item.link}}" target="_blank"><i class="ion-share"></i> {{item.link}}</a>
+								</div>
+							</div>
+
+						</li>
+						
+					</ul>
+
+				</div>
+			</div>
+
+		</section>
+		<!--portfolio-->
+
+		<!--contact-->
+		<section class="contact" id="contact" data-speed="10">
+			
+			<h2 class="text-center">Contact</h2>
+			<div class="row">
+				<div class="large-8 large-offset-2 columns">
+
+					<div class="map-wrapper">
+						<div id="gmap"></div>
+
+						<div class="contact-form">
+							
+							<form>
+								
+								<div class="row">
+									<div class="large-6 small-6 medium-6 columns">
+										<label for="frm-name">Name</label>
+      									<input type="text" placeholder="your name" id="frm-name" name="name" autocomplete="off">
+									</div>
+									<div class="large-6 small-6 medium-6 columns">
+										<label for="frm-email">Email</label>
+      									<input type="email" placeholder="your email" id="frm-email" name="email" autocomplete="off">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="large-12 columns">
+										<label for="frm-msg">Message</label>
+      									<textarea placeholder="Write something" name="msg" id="frm-msg" autocomplete="off"></textarea>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="large-12 columns">
+										<button type="submit" class="tiny">Send Message &nbsp; <i class="ion-ios7-arrow-forward"></i></button>
+									</div>
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+
+					
+
+
+					<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+			        <script>			
+						var mapSettings = {
+							zoom: 15,
+							lat: 23.790168,
+							lan: 90.410684,
+							disableUi: true,
+							selector: 'gmap',
+							marker: 'img/marker.png',
+							center: {
+								lat: 23.785000,
+								lan: 90.410684	
+							}	
+						},
+
+			            gMap_init = function(mapSettings){
+			                var mapOptions = {
+			                  zoom: mapSettings['zoom'],
+			                  center: new google.maps.LatLng(mapSettings['center']['lat'],mapSettings['center']['lan']),
+			                  disableDefaultUI: mapSettings['disableUi'],
+			                  mapTypeId: google.maps.MapTypeId.ROADMAP
+			                }
+			                var map = new google.maps.Map(document.getElementById(mapSettings['selector']), mapOptions);
+			        
+			                var image = mapSettings['marker'];
+			                var myLatLng = new google.maps.LatLng(mapSettings['lat'],mapSettings['lan']);
+			                var beachMarker = new google.maps.Marker({
+			                    position: myLatLng,
+			                    map: map,
+			                    icon: image
+			                });
+			            };
+						
+						gMap_init(mapSettings);
+					</script>
+
+				</div>
+			</div>
+
+			<div class="copyright text-center" ng-controller="basic">
+				<small>
+					&copy; 2013 to {{name}} <br>
+					{ website built with <a href="http://foundation.zurb.com" target="_blank">Foundation 5</a>, <a href="http://jquery.com/" target="_blank">jQuery</a>, <a href="http://angularjs.org" target="_blank">Angular</a> }
+				</small>
+			</div>
+
+		</section>
+		<!--contact-->
+
+	</div>
+	<!--main-->
+
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.onepage-scroll.js"></script>
+	<script src="js/jquery.easypiechart.js"></script>
+	<script src="js/jquery.isotope.min.js"></script>
+	<script src="js/custom.js"></script>
+	
+</body>
+</html>
