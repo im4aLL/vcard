@@ -30,6 +30,9 @@ var vCard = function(){
 		if( !isWindowfallback() && !isMobile() ) {
 			pageScroll();
 			animateElement('viewing-page-1');
+
+			var wHeight = $(window).height();
+			if(wHeight <= 650) $('html').addClass('small-screen');
 		}
 		else {
 			for(var i = 1; i <= 6; i++){
