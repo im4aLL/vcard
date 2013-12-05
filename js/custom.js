@@ -30,6 +30,7 @@ var vCard = function(){
 		if( !isWindowfallback() && !isMobile() ) {
 			pageScroll();
 			animateElement('viewing-page-1');
+			bgMove();
 
 			var wHeight = $(window).height();
 			if(wHeight <= 700) $('html').addClass('small-screen');
@@ -43,7 +44,6 @@ var vCard = function(){
 		pushNav();
 		initAnimate();
 		porfolio();
-		bgMove();
 		contactForm();
 	},
 
